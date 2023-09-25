@@ -26,7 +26,6 @@ function eg_delete_product_images( $post_id )
 }
 
 ```
-
 ## Hide shipping rates when free shipping is available, but keep "Local pickup"
 ```
 // Hide shipping rates when free shipping is available, but keep "Local pickup"
