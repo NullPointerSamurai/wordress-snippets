@@ -26,7 +26,9 @@ function eg_delete_product_images( $post_id )
 }
 
 ```
-## Hide shipping rates when free shipping is available, but keep "Local pickup"
+
+## Payment & SHipping Snippets
+### Hide shipping rates when free shipping is available, but keep "Local pickup"
 ```
 // Hide shipping rates when free shipping is available, but keep "Local pickup"
 add_filter( 'woocommerce_package_rates', 'eg_hide_shipping_when_free_is_available', 10, 2 );
@@ -54,7 +56,9 @@ function eg_hide_shipping_when_free_is_available( $rates, $package ) {
 	return $rates;
 }
 ```
-## WP All Import Custom Fields
+
+## WP All Import - Export Snippets
+### Custom Fields
 ```
 _metaseo_metatitle
 _metaseo_metadesc
