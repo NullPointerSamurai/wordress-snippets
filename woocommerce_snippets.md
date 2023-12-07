@@ -83,4 +83,24 @@ _metaseo_metaspecific_keywords
 
 we_skroutzxml_custom_availability
 
-``
+```
+
+## Administrator Dashboard
+### Add Product Tag @ WC Products Admin Dashboard
+```
+//Add Product Tag @ WC Products Admin Dashboard
+add_filter( 'woocommerce_product_filters', 'eg_filter_by_custom_taxonomy_dashboard_products' );
+function eg_filter_by_custom_taxonomy_dashboard_products( $output ) {
+  
+   global $wp_query;
+ 
+   $output .= wc_product_dropdown_categories( array(
+    'show_option_none' => 'Φιλτράρισμα με tag',
+    'taxonomy' => 'product_tag',
+    'name' => 'product_tag',
+    'selected' => isset( $wp_query->query_vars['product_tag'] ) ? $wp_query->query_vars['product_tag'] : '',
+   ) );
+  
+   return $output;
+ }
+```
