@@ -1,4 +1,4 @@
-# E-Grow Snippets
+# Wordpress Snippets
 
 1. [WordPres Hooks]
 1. [WordPres Usefull Snippets](wordpress_snippets.md)
