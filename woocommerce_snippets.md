@@ -56,6 +56,22 @@ function eg_hide_shipping_when_free_is_available( $rates, $package ) {
 	return $rates;
 }
 ```
+### Hide specific payment method based on total weight in Woocommerce
+```
+//Hide specific payment method based on total weight in Woocommerce
+add_filter( 'woocommerce_available_payment_gateways', 'eg_hide_payment_gateways_based_on_weight', 11, 1 );
+function eg_hide_payment_gateways_based_on_weight( $available_gateways ) {
+    if ( is_admin() ) return $available_gateways; // Only on frontend
+
+    $total_weight = WC()->cart->get_cart_contents_weight();
+
+    if( $total_weight >= 15 && isset($available_gateways['cod']) )
+        unset($available_gateways['cod']); // unset 'cod'
+
+    return $available_gateways;
+}
+```
+
 
 ## WP All Import - Export Snippets
 ### Custom Fields
