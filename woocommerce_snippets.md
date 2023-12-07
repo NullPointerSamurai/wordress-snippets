@@ -54,3 +54,13 @@ function eg_hide_shipping_when_free_is_available( $rates, $package ) {
 	return $rates;
 }
 ```
+## WP All Import Custom Fields
+```
+_metaseo_metatitle
+_metaseo_metadesc
+_metaseo_metakeywords
+_metaseo_metaspecific_keywords
+
+we_skroutzxml_custom_availability
+
+``
