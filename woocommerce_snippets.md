@@ -28,7 +28,7 @@ function eg_delete_product_images( $post_id )
 ```
 
 ## Payment & SHipping Snippets
-&ensp;### Hide shipping rates when free shipping is available, but keep "Local pickup"
+&ensp; ### Hide shipping rates when free shipping is available, but keep "Local pickup"
 ```
 // Hide shipping rates when free shipping is available, but keep "Local pickup"
 add_filter( 'woocommerce_package_rates', 'eg_hide_shipping_when_free_is_available', 10, 2 );
