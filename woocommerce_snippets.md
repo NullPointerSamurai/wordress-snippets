@@ -85,6 +85,62 @@ we_skroutzxml_custom_availability
 
 ```
 
+## Web Expert 
+### Display custom skroutz availability combine with webExpert plugin @ WC Single Product Page
+```
+// Display custom skroutz availability combine with webExpert plugin @ WC Single Product Page
+add_action("woocommerce_after_add_to_cart_button", "egr_show_avail_sktrz", 10);
+function egr_show_avail_sktrz(){
+
+    global $product;
+    $product->get_id();
+
+    // Απλό προιόν
+    if ($product->is_type('simple')) {
+
+        /**
+         ** 
+         ** 
+         ** --- Αν το προιόν ΑΠΛΟ και είναι INSTOCK ---
+         ** 
+         **
+         **/
+        if ($product->get_stock_quantity() > 0) {
+
+            // Αν στο προιον έχει επιλεγεί το πεδίο "Διαθεσιμότητα"
+            if ($product->get_meta("we_skroutzxml_custom_availability")) {
+                echo "<div class='eg_skrtz_availability'>" . $product->get_meta("we_skroutzxml_custom_availability") . "</div>";
+            }
+
+            // Αν στο προιον ΔΕΝ έχει επιλεγεί το πεδίο "Διαθεσιμότητα", είναι δηλαδή Διαθεσιμότητα = Προκαθορισμένο
+            else {
+                //echo "<div class='eg_skrtz_availability'>Άμεση Παραλαβή / Παράδοση 1 έως 3 ημέρες</div>";
+                echo "<div class='eg_skrtz_availability eg_skrtz_in_stock'>" . get_option('we_skroutz_xml_availability') . "</div>";
+            }
+        } // end-if "InStock"
+
+        /**
+         ** 
+         ** --- Αν το προιόν είναι OUTOFSTOCK ΚΑΙ επιτρέπει BACKORDERS ---
+         ** 
+         **
+         **/
+        if ($product->get_stock_quantity() <= 0 && $product->backorders_allowed()) {
+
+            // Αν στο προιον έχει επιλεγεί το πεδίο "Διαθεσιμότητα"
+            if ($product->get_meta("we_skroutzxml_custom_preavailability")) {
+                echo "<div class='pr eg_skrtz_availability'>" . $product->get_meta("we_skroutzxml_custom_preavailability") . "</div>";
+            }
+
+            // Αν στο προιον ΔΕΝ έχει επιλεγεί το πεδίο "Διαθεσιμότητα", είναι δηλαδή Διαθεσιμότητα = Προκαθορισμένο
+            else {
+                echo "<div class='pree eg_skrtz_availability eg_skrtz_yes_bo'>" . get_option('we_skroutz_xml_preavailability') . "</div>";
+            }
+        } // end-if "OutOfStock"
+    }
+}
+```
+
 ## Administrator Dashboard
 ### Add Product Tag @ WC Products Admin Dashboard
 ```
