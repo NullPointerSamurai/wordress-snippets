@@ -104,3 +104,26 @@ function eg_filter_by_custom_taxonomy_dashboard_products( $output ) {
    return $output;
  }
 ```
+### Add Input Search To Admin Bar
+```
+//Add Search To Admin Bar
+add_action('admin_bar_menu', 'boatparts_admin_bar_form');
+function boatparts_admin_bar_form() {
+  global $wp_admin_bar;
+
+  $search_query = '';
+  if ( $_GET['post_type'] == 'product' ) {
+    $search_query = $_GET['s'];
+  }
+
+  $wp_admin_bar->add_menu(array(
+    'id' => 'boatparts_admin_bar_form',
+    'parent' => 'top-secondary',
+    'title' => '<form method="get" action="'.get_site_url().'/wp-admin/edit.php?post_type=product">
+      <input name="s" type="text" value="' . $search_query . '" style="height:20px;margin:5px 0;line-height:1em;"/> 
+      <input type="submit" style="padding:3px 7px;line-height:1" value="Search Products"/> 
+      <input name="post_type" value="product" type="hidden">
+    </form>'
+  ));
+}
+```
