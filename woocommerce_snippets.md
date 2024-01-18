@@ -26,15 +26,35 @@ function eg_delete_product_images( $post_id )
 }
 
 ```
-### EMAIL
+### Send e-mail to client for cancelled order WC
+/** Send e-mail to client for cancelled order **/ 
+add_action('woocommerce_order_status_changed', 'eg_send_custom_email_notifications', 10, 4);
+function eg_send_custom_email_notifications($order_id, $old_status, $new_status, $order)
+{
+    if ($new_status == 'cancelled' || $new_status == 'failed') {
+        $wc_emails = WC()->mailer()->get_emails(); // Get all WC_emails objects instances
+        $customer_email = $order->get_billing_email(); // The customer email
+    }
 
-> [!NOTE 
+    if ($new_status == 'cancelled') {
+        // change the recipient of this instance
+        $wc_emails['WC_Email_Cancelled_Order']->recipient = $customer_email;
+        // Sending the email from this instance
+        $wc_emails['WC_Email_Cancelled_Order']->trigger($order_id);
+    } elseif ($new_status == 'failed') {
+        // change the recipient of this instance
+        $wc_emails['WC_Email_Failed_Order']->recipient = $customer_email;
+        // Sending the email from this instance
+        $wc_emails['WC_Email_Failed_Order']->trigger($order_id);
+    }
+}
+
+> [!NOTE]
 > This code uses the WooCommerce woocommerce_order_status_changed hook to call the send_cancelled_order_email function when an order is canceled.
 
 > The send_cancelled_email_notifications function then checks if the new status is either “cancelled" or “failed". If the new status matches either of these values, the function gets all instances of the WC_Emails class (which are responsible for sending WooCommerce emails) and the email address of the customer who placed the order.
 
 > If the new status is “cancelled", the recipient of the WC_Email_Cancelled_Order instance (which is responsible for sending the “Order Cancelled" email) is set to the customer email, and the email is triggered with the trigger function. If the new status is “failed", the recipient of the WC_Email_Failed_Order instance (which is responsible for sending the “Order Failed" email) is set to the customer email, and the email is triggered with the trigger function.
-] 
 
 ### Change WC thumbnail for sub-categories with image of the first product
 ```
