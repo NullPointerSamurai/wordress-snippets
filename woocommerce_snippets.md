@@ -27,6 +27,7 @@ function eg_delete_product_images( $post_id )
 
 ```
 ### Send e-mail to client for cancelled order WC
+```
 /** Send e-mail to client for cancelled order **/ 
 add_action('woocommerce_order_status_changed', 'eg_send_custom_email_notifications', 10, 4);
 function eg_send_custom_email_notifications($order_id, $old_status, $new_status, $order)
@@ -48,7 +49,7 @@ function eg_send_custom_email_notifications($order_id, $old_status, $new_status,
         $wc_emails['WC_Email_Failed_Order']->trigger($order_id);
     }
 }
-
+```
 > [!NOTE]
 > This code uses the WooCommerce woocommerce_order_status_changed hook to call the send_cancelled_order_email function when an order is canceled.
 
