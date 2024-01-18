@@ -1,4 +1,4 @@
-## Automatically delete WC images from Server after deleting a product
+### Automatically delete WC images from Server after deleting a product
 
 ```
 // Automatically delete WC images from Server after deleting a product
