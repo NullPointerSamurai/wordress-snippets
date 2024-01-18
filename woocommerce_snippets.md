@@ -27,7 +27,7 @@ function eg_delete_product_images( $post_id )
 
 ```
 
-## Payment & SHipping Snippets
+## Payment & Shipping Snippets
 ### Hide shipping rates when free shipping is available, but keep "Local pickup"
 ```
 // Hide shipping rates when free shipping is available, but keep "Local pickup"
@@ -56,7 +56,7 @@ function eg_hide_shipping_when_free_is_available( $rates, $package ) {
 	return $rates;
 }
 ```
-### Hide specific payment method based on total weight in Woocommerce
+### Hide specific payment method based on total weight in WooCommerce
 ```
 //Hide specific payment method based on total weight in Woocommerce
 add_filter( 'woocommerce_available_payment_gateways', 'eg_hide_payment_gateways_based_on_weight', 11, 1 );
@@ -72,7 +72,6 @@ function eg_hide_payment_gateways_based_on_weight( $available_gateways ) {
 }
 ```
 
-
 ## WP All Import - Export Snippets
 ### Custom Fields
 ```
@@ -85,7 +84,7 @@ we_skroutzxml_custom_availability
 
 ```
 
-## Web Expert 
+## Web Expert - Skroutz
 ### Display custom skroutz availability combine with webExpert plugin @ WC Single Product Page
 ```
 // Display custom skroutz availability combine with webExpert plugin @ WC Single Product Page
@@ -184,6 +183,7 @@ function boatparts_admin_bar_form() {
 }
 ```
 
+## Extra
 ### Add snow with custom script at footer
 ```
 <?php 
