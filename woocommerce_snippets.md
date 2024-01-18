@@ -27,7 +27,7 @@ function eg_delete_product_images( $post_id )
 
 ```
 ### Send e-mail to client for cancelled order WC
-```
+```php
 /** Send e-mail to client for cancelled order **/ 
 add_action('woocommerce_order_status_changed', 'eg_send_custom_email_notifications', 10, 4);
 function eg_send_custom_email_notifications($order_id, $old_status, $new_status, $order)
@@ -59,7 +59,7 @@ function eg_send_custom_email_notifications($order_id, $old_status, $new_status,
 
 ### Display the discount percentage on the sale badge WC
 
-```
+```php
 /** Display the discount percentage on the sale badge WC**/
 add_filter('woocommerce_sale_flash', 'add_percentage_to_sale_badge', 20, 3);
 function add_percentage_to_sale_badge($html, $post, $product)
@@ -115,7 +115,7 @@ function add_percentage_to_sale_badge($html, $post, $product)
 }
 ```
 ### Change WC thumbnail for sub-categories with image of the first product
-```
+```php
 /** Change WC thumbnail for sub-categories with image of the first product **/
 add_action('woocommerce_before_subcategory_title', 'eg_replace_category_thumbnail', 10);
 function eg_replace_category_thumbnail($category)
@@ -153,7 +153,7 @@ function eg_replace_category_thumbnail($category)
 ```
 ## Payment & Shipping Snippets
 ### Hide shipping rates when free shipping is available, but keep "Local pickup"
-```
+```php
 // Hide shipping rates when free shipping is available, but keep "Local pickup"
 add_filter( 'woocommerce_package_rates', 'eg_hide_shipping_when_free_is_available', 10, 2 );
 function eg_hide_shipping_when_free_is_available( $rates, $package ) {
@@ -181,7 +181,7 @@ function eg_hide_shipping_when_free_is_available( $rates, $package ) {
 }
 ```
 ### Hide specific payment method based on total weight in WooCommerce
-```
+```php
 //Hide specific payment method based on total weight in Woocommerce
 add_filter( 'woocommerce_available_payment_gateways', 'eg_hide_payment_gateways_based_on_weight', 11, 1 );
 function eg_hide_payment_gateways_based_on_weight( $available_gateways ) {
@@ -198,7 +198,7 @@ function eg_hide_payment_gateways_based_on_weight( $available_gateways ) {
 
 ## WP All Import - Export Snippets
 ### Custom Fields
-```
+```php
 _metaseo_metatitle
 _metaseo_metadesc
 _metaseo_metakeywords
@@ -210,7 +210,7 @@ we_skroutzxml_custom_availability
 
 ## Web Expert - Skroutz
 ### Display custom skroutz availability combine with webExpert plugin @ WC Single Product Page
-```
+```php
 // Display custom skroutz availability combine with webExpert plugin @ WC Single Product Page
 add_action("woocommerce_after_add_to_cart_button", "egr_show_avail_sktrz", 10);
 function egr_show_avail_sktrz(){
@@ -266,7 +266,7 @@ function egr_show_avail_sktrz(){
 
 ## Administrator Dashboard
 ### Add Product Tag @ WC Products Admin Dashboard
-```
+```php
 //Add Product Tag @ WC Products Admin Dashboard
 add_filter( 'woocommerce_product_filters', 'eg_filter_by_custom_taxonomy_dashboard_products' );
 function eg_filter_by_custom_taxonomy_dashboard_products( $output ) {
