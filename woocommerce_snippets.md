@@ -1,6 +1,6 @@
 ### Automatically delete WC images from Server after deleting a product
 
-```
+```php
 // Automatically delete WC images from Server after deleting a product
 add_action( 'before_delete_post', 'eg_delete_product_images', 10, 1 );
 function eg_delete_product_images( $post_id )
