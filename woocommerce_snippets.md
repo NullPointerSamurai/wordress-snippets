@@ -26,7 +26,43 @@ function eg_delete_product_images( $post_id )
 }
 
 ```
+### Change WC thumbnail for sub-categories with image of the first product
+```
+/** Change WC thumbnail for sub-categories with image of the first product **/
+add_action('woocommerce_before_subcategory_title', 'eg_replace_category_thumbnail', 10);
+function eg_replace_category_thumbnail($category)
+{
+    // Checking if the category has products
+    $args = array(
+        'post_type' => 'product',
+        'posts_per_page' => 1,
+        'product_cat' => $category->slug,
+        'orderby' => 'date',
+        'order' => 'DESC'
+    );
 
+	// store the products
+    $products = new WP_Query($args);
+
+    if ($products->have_posts()) {
+        while ($products->have_posts()) : $products->the_post();
+            // Get the ID of the first product
+            $first_product_id = get_the_ID();
+
+            // Get the image of the first product
+            $image = wp_get_attachment_image_src(get_post_thumbnail_id($first_product_id), 'single-post-thumbnail');
+
+            // Replace category thumbnail with first product image
+            if ($image) {
+                echo '<img src="' . esc_url($image[0]) . '" alt="' . esc_attr($category->name) . '" />';
+            }
+
+        endwhile;
+
+        wp_reset_postdata();
+    }
+}
+```
 ## Payment & Shipping Snippets
 ### Hide shipping rates when free shipping is available, but keep "Local pickup"
 ```
