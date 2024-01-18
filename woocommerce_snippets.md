@@ -57,6 +57,63 @@ function eg_send_custom_email_notifications($order_id, $old_status, $new_status,
 
 > If the new status is “cancelled", the recipient of the WC_Email_Cancelled_Order instance (which is responsible for sending the “Order Cancelled" email) is set to the customer email, and the email is triggered with the trigger function. If the new status is “failed", the recipient of the WC_Email_Failed_Order instance (which is responsible for sending the “Order Failed" email) is set to the customer email, and the email is triggered with the trigger function.
 
+### Display the discount percentage on the sale badge WC
+
+```
+/** Display the discount percentage on the sale badge WC**/
+add_filter('woocommerce_sale_flash', 'add_percentage_to_sale_badge', 20, 3);
+function add_percentage_to_sale_badge($html, $post, $product)
+{
+
+    if ($product->is_type('variable')) {
+        $percentages = array();
+
+        // Get all variation prices
+        $prices = $product->get_variation_prices();
+
+        // Loop through variation prices
+        foreach ($prices['price'] as $key => $price) {
+            // Only on sale variations
+            if ($prices['regular_price'][$key] !== $price) {
+                // Calculate and set in the array the percentage for each variation on sale
+                $percentages[] = round(100 - (floatval($prices['sale_price'][$key]) / floatval($prices['regular_price'][$key]) * 100));
+            }
+        }
+        // We keep the highest value
+        $percentage = max($percentages) . '%';
+    } elseif ($product->is_type('grouped')) {
+        $percentages = array();
+
+        // Get all variation prices
+        $children_ids = $product->get_children();
+
+        // Loop through variation prices
+        foreach ($children_ids as $child_id) {
+            $child_product = wc_get_product($child_id);
+
+            $regular_price = (float) $child_product->get_regular_price();
+            $sale_price    = (float) $child_product->get_sale_price();
+
+            if ($sale_price != 0 || !empty($sale_price)) {
+                // Calculate and set in the array the percentage for each child on sale
+                $percentages[] = round(100 - ($sale_price / $regular_price * 100));
+            }
+        }
+        // We keep the highest value
+        $percentage = max($percentages) . '%';
+    } else {
+        $regular_price = (float) $product->get_regular_price();
+        $sale_price    = (float) $product->get_sale_price();
+
+        if ($sale_price != 0 || !empty($sale_price)) {
+            $percentage    = round(100 - ($sale_price / $regular_price * 100)) . '%';
+        } else {
+            return $html;
+        }
+    }
+    return '<span class="onsale">-' . $percentage . '</span>';
+}
+```
 ### Change WC thumbnail for sub-categories with image of the first product
 ```
 /** Change WC thumbnail for sub-categories with image of the first product **/
