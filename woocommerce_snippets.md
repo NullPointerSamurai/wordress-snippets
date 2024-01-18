@@ -28,13 +28,14 @@ function eg_delete_product_images( $post_id )
 ```
 ### EMAIL
 
-> [!NOTE]  
+> [!NOTE 
 > This code uses the WooCommerce woocommerce_order_status_changed hook to call the send_cancelled_order_email function when an order is canceled.
 
 > The send_cancelled_email_notifications function then checks if the new status is either “cancelled" or “failed". If the new status matches either of these values, the function gets all instances of the WC_Emails class (which are responsible for sending WooCommerce emails) and the email address of the customer who placed the order.
 
 > If the new status is “cancelled", the recipient of the WC_Email_Cancelled_Order instance (which is responsible for sending the “Order Cancelled" email) is set to the customer email, and the email is triggered with the trigger function. If the new status is “failed", the recipient of the WC_Email_Failed_Order instance (which is responsible for sending the “Order Failed" email) is set to the customer email, and the email is triggered with the trigger function.
-> 
+] 
+
 ### Change WC thumbnail for sub-categories with image of the first product
 ```
 /** Change WC thumbnail for sub-categories with image of the first product **/
