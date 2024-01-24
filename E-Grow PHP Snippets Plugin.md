@@ -1,2 +1,2 @@
-
-Description for EGROW plugin
+> [!TIP]
+> This is a custom plugin by E-Grow
