@@ -4,6 +4,7 @@
 https://www.businessbloomer.com/woocommerce-visual-hook-guide-single-product-page/
 https://www.businessbloomer.com/woocommerce-visual-hook-guide-archiveshopcat-page/
 
+## General
 ### Automatically delete WC images from Server after deleting a product
 
 ```php
