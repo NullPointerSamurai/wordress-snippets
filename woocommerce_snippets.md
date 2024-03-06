@@ -1,4 +1,6 @@
-[! Tested at WC v8.0 and above]
+> [!WARNING]
+> Compatible with WooCommerce version 8.0 and higher.
+
 - [x] #739
 - [ ] https://github.com/octo-org/octo-repo/issues/740
 - [ ] Add delight to the experience when all tasks are complete :tada:
