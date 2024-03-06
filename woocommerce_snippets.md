@@ -1,4 +1,9 @@
 [! Tested at WC v8.0 and above]
+- [x] #739
+- [ ] https://github.com/octo-org/octo-repo/issues/740
+- [ ] Add delight to the experience when all tasks are complete :tada:
+
+
 ### Automatically delete WC images from Server after deleting a product
 
 ```php
