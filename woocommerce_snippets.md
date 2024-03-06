@@ -1,3 +1,4 @@
+[! Tested at WC v8.0 and above]
 ### Automatically delete WC images from Server after deleting a product
 
 ```php
