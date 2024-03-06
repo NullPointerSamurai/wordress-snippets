@@ -1,11 +1,6 @@
 > [!IMPORTANT]
 > Compatible with WooCommerce version 8.0 and higher.
 
-- [x] #739
-- [ ] https://github.com/octo-org/octo-repo/issues/740
-- [ ] Add delight to the experience when all tasks are complete :tada:
-
-
 ### Automatically delete WC images from Server after deleting a product
 
 ```php
