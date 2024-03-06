@@ -20,7 +20,7 @@ function eg_re_add_container_closing(){
 add_action ('get_footer','eg_re_add_container_closing',5);
 ```
 
-#Add YITH Wishlist counter icon via Shortcode
+## Add YITH Wishlist counter icon via Shortcode
 ```
 //Add YITH Wishlist counter icon via Shortcode
 if ( defined( 'YITH_WCWL' ) && ! function_exists( 'yith_wcwl_get_items_count' ) ) {
