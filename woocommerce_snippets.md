@@ -1,4 +1,4 @@
-> [!WARNING]
+> [!IMPORTANT]
 > Compatible with WooCommerce version 8.0 and higher.
 
 - [x] #739
