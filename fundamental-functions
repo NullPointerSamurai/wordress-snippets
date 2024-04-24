@@ -2,7 +2,6 @@
 > This is a custom plugin developed by E-Grow, designed to enhance the functionality of WooCommerce with essential features.
 
 ```php
-<?php
 /**
  * Plugin Name: Fundamentals Functions
  * Description: This plugin offers a comprehensive array of functions tailored to meet the foundational needs of developers, data analysts, and system administrators alike.
@@ -106,3 +105,4 @@ function eg_replace_category_thumbnail($category)
     }
 }
 
+```
