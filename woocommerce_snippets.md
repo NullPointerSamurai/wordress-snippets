@@ -272,6 +272,24 @@ function egr_show_avail_sktrz(){
 ```
 
 ## Administrator Dashboard
+
+### Add maintenance mode in WordPress but exclude administrator
+```php
+// Add maintenance mode in WordPress but exclude administrator
+add_action( 'template_redirect', 'maintenance_mode_redirect' );
+function maintenance_mode_redirect() {
+    if ( ! is_admin() && ! is_admin_user_logged_in() && ! is_user_logged_in() ) {
+        wp_redirect( home_url( '/maintenance.php' ) );
+        exit();
+    }
+}
+
+function is_admin_user_logged_in() {
+    $user = wp_get_current_user();
+    return $user && array_intersect( $user->roles, array( 'administrator' ) );
+}
+```
+
 ### Add Product Tag @ WC Products Admin Dashboard
 ```php
 //Add Product Tag @ WC Products Admin Dashboard
