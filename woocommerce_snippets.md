@@ -5,6 +5,24 @@ https://www.businessbloomer.com/woocommerce-visual-hook-guide-single-product-pag
 https://www.businessbloomer.com/woocommerce-visual-hook-guide-archiveshopcat-page/
 
 ## General
+## Add maintenance mode in WordPress but exclude administrator
+
+```php
+// Add maintenance mode in WordPress but exclude administrator
+add_action( 'template_redirect', 'maintenance_mode_redirect' );
+function maintenance_mode_redirect() {
+    if ( ! is_admin() && ! is_admin_user_logged_in() && ! is_user_logged_in() ) {
+        wp_redirect( home_url( '/maintenance.php' ) ); // you need to create an maintenance.php page first
+        exit();
+    }
+}
+
+function is_admin_user_logged_in() {
+    $user = wp_get_current_user();
+    return $user && array_intersect( $user->roles, array( 'administrator' ) );
+}
+```
+
 ### Automatically delete WC images (main+gallery) from Server after deleting a product
 
 ```php
