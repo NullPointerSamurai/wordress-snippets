@@ -23,6 +23,50 @@ function is_admin_user_logged_in() {
 }
 ```
 
+### delete_all_wc_products_and_images
+```php
+
+<?php
+require_once('wp-load.php'); // Adjust the path to find the correct wp-load.php if necessary
+
+function eg_delete_all_wc_products_and_images() {
+    // Get all WooCommerce products
+    $args = array(
+        'post_type'      => 'product',
+        'posts_per_page' => -1, // Retrieve all products
+        'fields'         => 'ids' // Only get product IDs to save memory
+    );
+
+    $products = get_posts($args);
+
+    foreach ($products as $product_id) {
+        // Get all attached image IDs
+        $image_ids = array();
+        $image_ids[] = get_post_thumbnail_id($product_id); // Featured image
+        $gallery_images = get_post_meta($product_id, '_product_image_gallery', true);
+
+        if (!empty($gallery_images)) {
+            $image_ids = array_merge($image_ids, explode(',', $gallery_images));
+        }
+
+        // Delete all images associated with the product
+        foreach ($image_ids as $image_id) {
+            if (!empty($image_id)) {
+                wp_delete_attachment($image_id, true);
+            }
+        }
+
+        // Finally, delete the product
+        wp_delete_post($product_id, true);
+    }
+}
+
+// Run only once and then DISABLE again
+// eg_delete_all_wc_products_and_images();
+
+?>
+```
+
 ### Automatically delete WC images (main+gallery) from Server after deleting a product
 
 ```php
