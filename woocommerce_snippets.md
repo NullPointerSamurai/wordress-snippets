@@ -5,7 +5,7 @@ https://www.businessbloomer.com/woocommerce-visual-hook-guide-single-product-pag
 https://www.businessbloomer.com/woocommerce-visual-hook-guide-archiveshopcat-page/
 
 ## General
-## Add maintenance mode in WordPress but exclude administrator
+## Add maintenance mode in WordPress but exclude administrator v2
 
 ```php
 // Add maintenance mode in WordPress but exclude administrator
